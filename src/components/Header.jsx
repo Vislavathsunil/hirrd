@@ -47,7 +47,6 @@ function Header() {
                     </SignedOut>
                     <SignedIn className='text-center' >
 
-                        {/* <RedirectToOrganizationProfile /> */}
                         {/* Show only when user is recruiter */}
                         {
                             user?.unsafeMetadata?.role === 'Recruiter' &&
