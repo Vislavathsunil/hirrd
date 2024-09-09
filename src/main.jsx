@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ClerkProvider
       appearance={{ baseTheme: shadesOfPurple }}
-      publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
+      publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/" afterSignInUrl="/">
       <App />
     </ClerkProvider>
   </React.StrictMode>,

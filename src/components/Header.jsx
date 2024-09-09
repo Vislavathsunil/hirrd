@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import logo from '../../public/logo.png'
 import { Button } from "../components/ui/button"
-import { SignedIn, SignedOut, SignIn, SignInButton, UserButton, useUser } from "@clerk/clerk-react";
+import { RedirectToUserProfile, SignedIn, SignedOut, SignIn, SignInButton, UserButton, useUser } from "@clerk/clerk-react";
 import { BriefcaseBusiness, ClipboardPaste, Heart, Pen, PenBox } from 'lucide-react';
 
 function Header() {
@@ -38,7 +38,8 @@ function Header() {
                     <SignedOut>
                         <Button variant="outline" onClick={() => setShowSignIn(true)} >Login</Button>
                     </SignedOut>
-                    <SignedIn className='text-center'>
+                    <SignedIn className='text-center' >
+                        {/* <RedirectToUserProfile /> */}
                         {/* Show only when user is recruiter */}
                         {
                             user?.unsafeMetadata?.role === 'Recruiter' &&
