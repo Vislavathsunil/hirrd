@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom'
 import logo from '../../public/logo.png'
 import { Button } from "../components/ui/button"
 import { RedirectToOrganizationProfile, RedirectToUserProfile, SignedIn, SignedOut, SignIn, SignInButton, UserButton, useUser } from "@clerk/clerk-react";
@@ -7,9 +7,16 @@ import { BriefcaseBusiness, ClipboardPaste, Heart, Pen, PenBox } from 'lucide-re
 
 function Header() {
     const [showSignIn, setShowSignIn] = useState(false);
+    const navigate = useNavigate();
 
     const [search, setSearch] = useSearchParams();
     const { user } = useUser();
+
+    // Check user authentication status
+    SignedIn(() => {
+        navigate("/"); // Redirect to the home page
+    });
+
 
     useEffect(() => {
         // if in url is there is 'sign-in' query present then sign in popup will show to user to signin 
@@ -39,7 +46,8 @@ function Header() {
                         <Button variant="outline" onClick={() => setShowSignIn(true)} >Login</Button>
                     </SignedOut>
                     <SignedIn className='text-center' >
-                        <RedirectToOrganizationProfile />
+
+                        {/* <RedirectToOrganizationProfile /> */}
                         {/* Show only when user is recruiter */}
                         {
                             user?.unsafeMetadata?.role === 'Recruiter' &&
